@@ -1,14 +1,6 @@
 // const express = require('express')
-// const mongoose = require('mongoose');
 //
 // const bodyParser = require('body-parser');
-// mongoose.connect('mongodb://localhost/first');
-//
-// const con = mongoose.connection;
-// con.on('error', console.error.bind(console, 'connection error:'));
-// con.once('open',()=>{
-// 	console.log("--Databse connectin opened--");
-// })
 //
 // const app = express()
 //
@@ -26,42 +18,22 @@
 
 var express = require('express');
 var graphqlHTTP = require('express-graphql');
-var { buildSchema } = require('graphql');
+const schema = require('./schema')
+const mongoose = require('mongoose');
 
-var schema = buildSchema(`
-  type Query {
-    hello: String,
-		message:String,
-		user : String
-  },
-	type message {
-		message: String
-	},
-	type user {
-		likes: String,
-		bio: String
-	}
-`);
+mongoose.connect('mongodb://pg:pg1234@ds163330.mlab.com:63330/bunny_rest');
 
-var root = {
-	hello: () => " hey ",
-	message: () => 'Hello world!',
-	likes : () => {
-		const response = {
-			"likes":5,
-			"comments":45
-		}
-		return response
-	},
-	bio: () =>{
-		return "this is bio"
-	}
- };
+const con = mongoose.connection;
+con.on('error', console.error.bind(console, 'connection error:'));
+con.once('open', () => {
+  console.log("--Databse connectin opened--");
+})
 
+
+const port = 4000
 var app = express();
 app.use('/graphql', graphqlHTTP({
   schema: schema,
-  rootValue: root,
   graphiql: true,
 }));
-app.listen(4000, () => console.log('Now browse to localhost:4000/graphql'));
+app.listen(port, () => console.log(`Now browse to https://localhost:${port}/graphql`));
