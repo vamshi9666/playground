@@ -21,28 +21,27 @@ const postType = new GraphQLObjectType({
     }
   })
 })
-
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
     post: {
       type: postType,
       resolve() {
-      return  Post.find({})
-            .then(res => {
-              console.log(res);
-              return res
-            } )
+        return Post.find({})
+          .then(res => {
+            console.log(res);
+            return res
+          })
       }
     },
     posts: {
       type: new GraphQLList(postType),
-      resolve(){
+      resolve() {
         return Post.find({})
-                   .then(res => {
-                     console.log(res);
-                     return res
-                   })
+          .then(res => {
+            console.log(res);
+            return res
+          })
       }
     }
   }
