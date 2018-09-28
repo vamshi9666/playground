@@ -1,12 +1,15 @@
 const { createServer } = require('http')
 const { parse  } = require('url')
-const dev = process.env.NODE_ENV !== 'production'
+
+// const dotenv = require('dotenv').config()
+
+// const dev = process.env.NODE_ENV !== 'production'
 const next = require('next')
-const app = next( { dev } )
+const app = next(  )
 const handle= app.getRequestHandler()
 
-const port = 3000
-
+const port = 3000;
+const var = port;
 app.prepare()
 	.then(()=> {
 		createServer((req,res)=> {

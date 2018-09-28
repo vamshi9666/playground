@@ -1,4 +1,4 @@
-import Link from 'next/link';
+//import Link from 'next/link'
 
 const About = () => (
   <div className="">
@@ -6,4 +6,4 @@ const About = () => (
   </div>
 )
 
-export default About;
+export default About
