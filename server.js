@@ -9,7 +9,9 @@ const app = next(  )
 const handle= app.getRequestHandler()
 
 const port = 3000;
-const var = port;
+
+const var = 'port';
+
 app.prepare()
 	.then(()=> {
 		createServer((req,res)=> {
