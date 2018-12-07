@@ -23,45 +23,19 @@
 // app.listen(port,()=>{
 // 	console.log(`Server listensing on port ${port}`)
 // })
+var probe = require('probe-image-size');
 
-var express = require('express');
-var graphqlHTTP = require('express-graphql');
-var { buildSchema } = require('graphql');
+let getImageDims = async(url) => {
 
-var schema = buildSchema(`
-  type Query {
-    hello: String,
-		message:String,
-		user : String
-  },
-	type message {
-		message: String
-	},
-	type user {
-		likes: String,
-		bio: String
-	}
-`);
+    await probe(url).then(result => {
+        const {
+            width,
+            height
+        } = result
+        const outString = `${height}|${width}`
+        console.log(outString);
+        return outString;
+    });
+}
 
-var root = {
-	hello: () => " hey ",
-	message: () => 'Hello world!',
-	likes : () => {
-		const response = {
-			"likes":5,
-			"comments":45
-		}
-		return response
-	},
-	bio: () =>{
-		return "this is bio"
-	}
- };
-
-var app = express();
-app.use('/graphql', graphqlHTTP({
-  schema: schema,
-  rootValue: root,
-  graphiql: true,
-}));
-app.listen(4000, () => console.log('Now browse to localhost:4000/graphql'));
+getImageDims('https://www.azindia.com/ClassifiedImages/6A4F1F2D-05DA-49E5-85FF-F8B60A4DF827_12261.jpeg')
