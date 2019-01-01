@@ -5,15 +5,19 @@
   "main": "node.js",
   "scripts": {
     "test": "nodemon node",
-    "start":"node node"
+    "start": "node node"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cachegoose": "^7.1.0",
+    "express": "^4.16.4",
     "express-graphql": "^0.6.12",
+    "faker": "^4.1.0",
     "graphql": "^14.0.0",
     "mongodb": "^3.1.4",
-    "mongoose": "^5.2.12"
+    "mongoose": "^5.2.12",
+    "redis": "^2.8.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"
