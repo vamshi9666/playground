@@ -70,8 +70,11 @@
       }
     },
     created: async function() {
-      await this.init()
+      setTimeout(async()=> {
+         await this.init()
       console.log(store.state.array)
+      }, 4000)
+     
     },
     methods: {
       async init() {
