@@ -31,19 +31,25 @@
         try {
           let newArr = []
           for (var i = 0; i < 16; i++) {
-            console.log("push ", i);
             state.array.push(i)
           }
-          console.log(state)
         } catch (err) {
           console.log(err)
         }
   
-      }
+      },
+      
+
     },
     getters: {
       see(state) {
         return state.array;
+      },
+      async findZeros(state){
+        zeroIndexs = [];
+        for ( var i = 0 ; i < 16; i ++){
+          
+        }
       }
     },
     actions: {
