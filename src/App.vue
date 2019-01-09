@@ -17,65 +17,6 @@
 </template>
 
 <script>
-  // import Vue from 'vue'
-  // import createLogger from 'vuex/dist/logger'
-  // import Vuex, {
-  // } from 'vuex'
-  // Vue.use(Vuex)
-  // const store = new Vuex.Store({
-  // plugins: [createLogger()],
-  // state: {
-  // array: [],
-  // zeroIndexs: []
-  // },
-  // mutations: {
-  // async init(state) {
-  // try {
-  // for (var i = 0; i < 16; i++) {
-  // state.array.push(0)
-  // }
-  // } catch (err) {
-  // eslint-disable-next-line
-  // console.log(err)
-  // 
-  // }
-  // },
-  // async findZeros(state) {
-  // let zeroIndexs = [];
-  // state.array.forEach((val, i) => {
-  // if (val === 0) {
-  // zeroIndexs.push(i)
-  // }
-  // })
-  // state.zeroIndexs = zeroIndexs;
-  // },
-  // async insertNumbers(state) {
-  // const zeroIndexs = state.zeroIndexs;
-  // state.array[zeroIndexs[0]] = 5;
-  // }
-  // 
-  // },
-  // getters: {
-  // see(state) {
-  // return state.array;
-  // },
-  // getZeros(state) {
-  // return state.zeroIndexs;
-  // }
-  // },
-  // actions: {
-  // async init(context) {
-  // context.commit('init')
-  // },
-  // async insert_numbers(context) {
-  // context.commit('insertNumbers')
-  // },
-  // async get_zeros(context) {
-  // context.commit('findZeros')
-  // }
-  // }
-  // })
-  
   export default {
     name: 'app',
     data: function() {
@@ -85,12 +26,17 @@
         score: 0,
       }
     },
+    beforeCreate:async function(){
+      return new Promise((resolve, reject) => {
+        setTimeout(()=> {
+          console.log("TESTETETE")
+          resolve(null)
+        } ,5000)
+      })
+    },
     created: async function() {
-      console.log(`created`);
-      
-      //  setTimeout(async() => {
+  
       await this.init()
-      // }, 4000)
     },
     mounted: async function() {
       console.log(`mounted `)
@@ -117,22 +63,21 @@
         this.array = [...newArr]
       },
       async getZeros() {
-        
-        try{
-           let zeroIndexs = [];
+  
+        try {
+          let zeroIndexs = [];
           this.array.forEach((val, i) => {
-              zeroIndexs.push(i)
+            zeroIndexs.push(i)
           })
           console.log(zeroIndexs);
           this.zeroTiles = zeroIndexs
-        }
-        catch (err){
+        } catch (err) {
           console.log(err)
         }
-         
-        }
+  
       }
     }
+  }
 </script>
 
 <style>
